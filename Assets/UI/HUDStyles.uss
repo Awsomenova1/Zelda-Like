@@ -1,0 +1,35 @@
+.full-heart {
+    margin-right: 10px;
+    background-image: url('project://database/Assets/Textures/hearts.png?fileID=428640069&guid=6569502ce0e6ed14a8a725ee43a71a6d&type=3#full_heart');
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    visibility: visible;
+    width: 75px;
+    height: 75px;
+    margin-bottom: 10px;
+}
+
+.half-heart {
+    margin-right: 10px;
+    background-image: url('project://database/Assets/Textures/hearts.png?fileID=-314810428&guid=6569502ce0e6ed14a8a725ee43a71a6d&type=3#half_heart');
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    visibility: visible;
+    width: 75px;
+    height: 75px;
+    margin-bottom: 10px;
+}
+
+.empty-heart {
+    margin-right: 10px;
+    background-image: url('project://database/Assets/Textures/hearts.png?fileID=-1052925077&guid=6569502ce0e6ed14a8a725ee43a71a6d&type=3#empty_heart');
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    visibility: visible;
+    width: 75px;
+    height: 75px;
+    margin-bottom: 10px;
+}
