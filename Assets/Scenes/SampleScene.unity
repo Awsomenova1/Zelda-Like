@@ -454,6 +454,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3211244608159182594, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: _health
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211244608159182594, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211244608159182594, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: _maxHearts
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3211244609496710226, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
       propertyPath: m_Name
       value: Canvas
