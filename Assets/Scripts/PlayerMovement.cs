@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D playerRB;
+    
+    public GameObject swordHitbox;
 
     private float _horizontalDirection;
     private float _verticalDirection;
@@ -13,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalSpeed = 4f;
     private bool _isFacingRight;
     private bool _isFacingDown;
+
+    private bool _inAnimation = false;
+
+    private IEnumerator _swordCoroutine;
+    private float _swordTimeSeconds = 0.5f;
     // Update is called once per frame
     void Update()
     {
@@ -28,10 +35,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Attack(InputAction.CallbackContext context){
-        //TODO make function to use sword attack
+        //TODO possibly replace this when proper animations are implememnted, tie this functionality to unity animator
+        if(!_inAnimation){
+            _inAnimation = true;
+            swordHitbox.SetActive(true);
+
+            StartCoroutine(WaitForSword(_swordTimeSeconds));
+        }
     }
 
-    public void Flip(){
+    private IEnumerator WaitForSword(float waitTime){
+        yield return new WaitForSeconds(waitTime);
+
+        _inAnimation = false;
+        swordHitbox.SetActive(false);
+    }
+
+    /*public void Flip(){
         //if(_verticalDirection > 0){}
         _isFacingRight = !_isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -47,14 +67,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void rotate(){
-        /*Vector3 TargetDirection = 
+        Vector3 TargetDirection = 
 
         if(_horizontalDirection > 0f){
             transform.RotateTowards();
         }
         else if(_horizontalDirection < 0f){
             transform.Rotate(faceLeft);
-        }*/
+        }
         Vector2 moveDirection = playerRB.velocity;
         if (moveDirection != Vector2.zero) {//add conditions later to make only face cardinal directions
             float angle = Mathf.Atan2(-(moveDirection.y), -(moveDirection.x)) * Mathf.Rad2Deg;
@@ -62,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /*public void Jump(InputAction.CallbackContext context){
+    public void Jump(InputAction.CallbackContext context){
         if(context.performed && IsGrounded()){
             playerRB.velocity = new Vector2(playerRB.velocity.x, jumpingPower);
         }
