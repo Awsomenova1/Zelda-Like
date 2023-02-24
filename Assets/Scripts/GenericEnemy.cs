@@ -54,7 +54,7 @@ public class GenericEnemy : MonoBehaviour
         if (!_playerSpotted)
             patrol(step);
             // Functionality to check to see player:
-            Debug.Log(findThePlayer(PlayerMovement.GetTransform()));
+            //Debug.Log(findThePlayer(PlayerMovement.GetTransform()));
 
 
         // If player is spotted, _playerSpotted = true

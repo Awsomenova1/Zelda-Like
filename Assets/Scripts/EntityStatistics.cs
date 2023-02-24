@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EntityStatistics
+{
+    private int _maxHealth;
+    private int _currHealth;
+    public enum Directions
+    {
+        down,
+        up,
+        left,
+        right
+    }
+    private int _facingDirection;
+    private bool _inAnimation;
+
+    public EntityStatistics(){
+        _maxHealth = 10;
+        _currHealth = 10;
+        _facingDirection = (int) Directions.left;
+        _inAnimation = false;
+    }
+
+    public void takeDamage(int damage){
+        _currHealth -= damage;
+        if(_currHealth <= 0){
+            _currHealth = 0;
+        }
+    }
+    public void healDamage(int heal){
+        _currHealth += heal;
+        if(_currHealth <= _maxHealth){
+            _currHealth = _maxHealth;
+        }
+    }
+    public int getCurrentHealth(){
+        return _currHealth;
+    }
+
+    public void addHeart(){
+        _maxHealth += 2;
+        _currHealth = _maxHealth;
+    }
+    public void setMaxHealth(int newMax){
+        _maxHealth = newMax;
+    }
+    public int getMaxHealth(){
+        return _maxHealth;
+    }
+
+    public void setDirection(int direciton){
+        _facingDirection = direciton;
+    }
+    public int getDirection(){
+        return _facingDirection;
+    }
+
+    public void setInAnimation(bool inAnimation){
+        _inAnimation = inAnimation;
+    }
+    public bool getInAnimation(){
+        return _inAnimation;
+    }
+}

@@ -13,17 +13,25 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalDirection;
     private float _horizontalSpeed = 8f;
     private float _verticalSpeed = 4f;
-    private bool _isFacingRight;
-    private bool _isFacingDown;
+    //private bool _isFacingRight;
+    //private bool _isFacingDown;
+    private PlayerStatistics _stats;
 
     private bool _inAnimation = false;
 
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = 0.5f;
+
+    private void Start() {
+        _stats = new PlayerStatistics();
+    }
+
     // Update is called once per frame
     void Update()
     {
         playerRB.velocity = new Vector2(_horizontalDirection * _horizontalSpeed, _verticalDirection * _verticalSpeed);
+
+        //_stats.setDirection((int)EntityStatistics.Directions.left);
         //rotate();
         //TODO change flip code to change used sprites
         //TODO create placeholder sprites for character
@@ -36,8 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context){
         //TODO possibly replace this when proper animations are implememnted, tie this functionality to unity animator
-        if(!_inAnimation){
-            _inAnimation = true;
+        if(!_stats.getInAnimation()){
+            _stats.setInAnimation(true);
             swordHitbox.SetActive(true);
 
             StartCoroutine(WaitForSword(_swordTimeSeconds));
@@ -47,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator WaitForSword(float waitTime){
         yield return new WaitForSeconds(waitTime);
 
-        _inAnimation = false;
+        _stats.setInAnimation(false);
         swordHitbox.SetActive(false);
     }
 
