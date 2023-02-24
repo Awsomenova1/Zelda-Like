@@ -33,3 +33,30 @@
     height: 75px;
     margin-bottom: 10px;
 }
+
+.dialogue-text {
+    width: 100%;
+    height: 100%;
+    -unity-font: url('project://database/Assets/Fonts/VCR_OSD_MONO.ttf?fileID=12800000&guid=656e3cb32989ed54fa5cd8aca7d5d7c8&type=3#VCR_OSD_MONO');
+    -unity-font-definition: none;
+    font-size: 70px;
+    white-space: normal;
+    -unity-text-align: middle-left;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    -unity-font-style: bold;
+    -unity-text-outline-width: 0;
+    text-shadow: 3px 3px 0 rgb(0, 0, 0);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: rgb(164, 164, 164);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
