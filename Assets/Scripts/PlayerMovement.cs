@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context){
         _horizontalDirection = context.ReadValue<Vector2>().x;
         _verticalDirection = context.ReadValue<Vector2>().y;
+        _stats.decideDirection(_horizontalDirection, _verticalDirection);
     }
 
     public void Attack(InputAction.CallbackContext context){

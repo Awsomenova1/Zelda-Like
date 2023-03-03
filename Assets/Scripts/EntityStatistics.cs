@@ -58,6 +58,25 @@ public class EntityStatistics: MonoBehaviour
     public int getDirection(){
         return _facingDirection;
     }
+    public void decideDirection(float horizontalSpeed, float verticalSpeed){
+        if(Mathf.Abs(verticalSpeed) >= Mathf.Abs(horizontalSpeed)){
+            if(verticalSpeed <= 0){
+                _facingDirection = (int) Directions.down;
+            }
+            else{
+                _facingDirection = (int) Directions.up;
+            }
+        }
+        else{
+            //TODO check if this faces the correct direction
+            if(horizontalSpeed <= 0){
+                _facingDirection = (int) Directions.left;
+            }
+            else{
+                _facingDirection = (int) Directions.right;
+            }
+        }
+    }
 
     public void setInAnimation(bool inAnimation){
         _inAnimation = inAnimation;
