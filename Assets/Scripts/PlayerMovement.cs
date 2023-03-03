@@ -15,16 +15,13 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalSpeed = 4f;
     //private bool _isFacingRight;
     //private bool _isFacingDown;
+    [SerializeField]
     private PlayerStatistics _stats;
 
     private bool _inAnimation = false;
 
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = 0.5f;
-
-    private void Start() {
-        _stats = GetComponent<PlayerStatistics>();
-    }
 
     // Update is called once per frame
     void Update()

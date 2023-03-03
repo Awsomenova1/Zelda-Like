@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRB: {fileID: 228931830050582654}
   swordHitbox: {fileID: 1978723618131032445}
+  _stats: {fileID: 8459815373539703570}
 --- !u!114 &8459815373539703570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3a5d8c6ad126b4e96dd85f896e3c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 6
+  _currHealth: 6
   HealthChanged:
     m_PersistentCalls:
       m_Calls: []
