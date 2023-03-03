@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 
 public class HealthBar : MonoBehaviour
 {
+    public PlayerStatistics stats;
     [SerializeField]
     [Tooltip("The maximum number of full hearts the player can have.")]
     private int _maxHearts;
@@ -20,12 +21,32 @@ public class HealthBar : MonoBehaviour
     void OnEnable()
     {
         _doc = GetComponent<UIDocument>();
+        _health = stats.getCurrentHealth();
+        _maxHealth = stats.getMaxHealth();
         CalculateHearts();
+        stats.HealthChanged.AddListener(OnHealthChange);
+        stats.MaxHealthChanged.AddListener(OnMaxHealthChange);
+    }
+
+    void OnDisable()
+    {
+        stats.HealthChanged.RemoveListener(OnHealthChange);
+        stats.MaxHealthChanged.RemoveListener(OnMaxHealthChange);
     }
 
     void Update()
     {
         CalculateHearts();
+    }
+
+    void OnHealthChange(int health)
+    {
+        _health = health;
+    }
+
+    void OnMaxHealthChange(int maxHealth)
+    {
+        _maxHearts = maxHealth / 2;
     }
 
     void CalculateHearts()

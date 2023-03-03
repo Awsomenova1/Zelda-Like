@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float _swordTimeSeconds = 0.5f;
 
     private void Start() {
-        _stats = new PlayerStatistics();
+        _stats = GetComponent<PlayerStatistics>();
     }
 
     // Update is called once per frame

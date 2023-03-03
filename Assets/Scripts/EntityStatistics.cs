@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityStatistics
+public class EntityStatistics: MonoBehaviour
 {
-    private int _maxHealth;
-    private int _currHealth;
+    [SerializeField]
+    protected int _maxHealth;
+    [SerializeField]
+    protected int _currHealth;
     public enum Directions
     {
         down,
@@ -13,8 +15,8 @@ public class EntityStatistics
         left,
         right
     }
-    private int _facingDirection;
-    private bool _inAnimation;
+    protected int _facingDirection;
+    protected bool _inAnimation;
 
     public EntityStatistics(){
         _maxHealth = 10;
@@ -23,13 +25,13 @@ public class EntityStatistics
         _inAnimation = false;
     }
 
-    public void takeDamage(int damage){
+    public virtual void takeDamage(int damage){
         _currHealth -= damage;
         if(_currHealth <= 0){
             _currHealth = 0;
         }
     }
-    public void healDamage(int heal){
+    public virtual void healDamage(int heal){
         _currHealth += heal;
         if(_currHealth <= _maxHealth){
             _currHealth = _maxHealth;
@@ -39,11 +41,11 @@ public class EntityStatistics
         return _currHealth;
     }
 
-    public void addHeart(){
+    public virtual void addHeart(){
         _maxHealth += 2;
         _currHealth = _maxHealth;
     }
-    public void setMaxHealth(int newMax){
+    public virtual void setMaxHealth(int newMax){
         _maxHealth = newMax;
     }
     public int getMaxHealth(){
