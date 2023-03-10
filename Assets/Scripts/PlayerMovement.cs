@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     //private bool _isFacingDown;
     [SerializeField]
     private PlayerStatistics _stats;
+    [SerializeField]
+    private Animator _animator;
 
     private bool _inAnimation = false;
 
@@ -38,6 +40,12 @@ public class PlayerMovement : MonoBehaviour
         _horizontalDirection = context.ReadValue<Vector2>().x;
         _verticalDirection = context.ReadValue<Vector2>().y;
         _stats.decideDirection(_horizontalDirection, _verticalDirection);
+        WalkAnimation();
+    }
+
+    private void WalkAnimation(){
+        int direction = _stats.getDirection();
+        _animator.SetFloat("Direction", direction);
     }
 
     public void Attack(InputAction.CallbackContext context){
