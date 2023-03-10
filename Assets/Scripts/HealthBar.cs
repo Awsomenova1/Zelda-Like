@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class HealthBar : MonoBehaviour
 {
     public PlayerStatistics stats;
+    
+    [Header("Prefabs")] 
+    public GameObject fullHeartPrefab;
+    public GameObject halfHeartPrefab;
+    public GameObject emptyHeartPrefab;
+    
+    [Header("Health Stats")]
     [SerializeField]
     [Tooltip("The maximum number of full hearts the player can have.")]
     private int _maxHearts;
@@ -12,15 +19,9 @@ public class HealthBar : MonoBehaviour
     [Tooltip("One unit of health is half a heart.")]
     [Range(0, 20)]
     private int _health;
-    private UIDocument _doc;
 
-    private static readonly string emptyHeartClassName = "empty-heart";
-    private static readonly string halfHeartClassName = "half-heart";
-    private static readonly string fullHeartClassName = "full-heart";
-
-    void OnEnable()
+    private void OnEnable()
     {
-        _doc = GetComponent<UIDocument>();
         _health = stats.getCurrentHealth();
         _maxHealth = stats.getMaxHealth();
         CalculateHearts();
@@ -28,60 +29,62 @@ public class HealthBar : MonoBehaviour
         stats.MaxHealthChanged.AddListener(OnMaxHealthChange);
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         stats.HealthChanged.RemoveListener(OnHealthChange);
         stats.MaxHealthChanged.RemoveListener(OnMaxHealthChange);
     }
 
-    void Update()
+    private void OnHealthChange(int health)
     {
+        _health = health;
         CalculateHearts();
     }
 
-    void OnHealthChange(int health)
-    {
-        _health = health;
-    }
-
-    void OnMaxHealthChange(int maxHealth)
+    private void OnMaxHealthChange(int maxHealth)
     {
         _maxHearts = maxHealth / 2;
+        CalculateHearts();
     }
 
-    void CalculateHearts()
+    private void ClearHearts()
     {
-        var root = _doc.rootVisualElement;
-        var heartContainer = root.Q<VisualElement>("heart-container");
-        heartContainer.Clear();
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    private void CalculateHearts()
+    {
+        ClearHearts();
 
         _maxHealth = _maxHearts * 2;
         var halfHearts = _health % 2;
         var fullHearts = (_health - halfHearts) / 2;
         var emptyHearts = (_maxHealth / 2) - (halfHearts + fullHearts);
 
-        for (int i = 0; i < fullHearts; i++)
+        for (var i = 0; i < fullHearts; i++)
         {
-            AddHeart(heartContainer, fullHeartClassName);
+            AddHeart(fullHeartPrefab);
         }
 
         if (halfHearts > 0)
         {
-            AddHeart(heartContainer, halfHeartClassName);
+            AddHeart(halfHeartPrefab);
         }
 
-        for (int i = 0; i < emptyHearts; i++)
+        for (var i = 0; i < emptyHearts; i++)
         {
-            AddHeart(heartContainer, emptyHeartClassName);
+            AddHeart(emptyHeartPrefab);
         }
 
     }
 
-    void AddHeart(VisualElement heartContainer, string type)
-    {
-        var heart = new VisualElement();
-        heart.AddToClassList(type);
-        heartContainer.Add(heart);
+    private void AddHeart(GameObject heartPrefab)
+    { 
+        var p = Instantiate(heartPrefab, transform, true);
+        p.transform.localScale = new Vector3(1, 1, 1);
     }
 
 }
