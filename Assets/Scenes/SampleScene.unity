@@ -774,6 +774,26 @@ PrefabInstance:
       propertyPath: stats
       value: 
       objectReference: {fileID: 196630418}
+    - target: {fileID: 9054547910013916818, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: _stats
+      value: 
+      objectReference: {fileID: 196630418}
+    - target: {fileID: 9054547910013916818, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547910013916818, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: _fullHeartPrefab
+      value: 
+      objectReference: {fileID: 3226156061800984853, guid: 3c5c35b03fc3fa84fa7073978a8a3502, type: 3}
+    - target: {fileID: 9054547910013916818, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: _halfHeartPrefab
+      value: 
+      objectReference: {fileID: 395298013805959718, guid: 7df5a337b5a1f7d47bbc8734c289018b, type: 3}
+    - target: {fileID: 9054547910013916818, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: _emptyHeartPrefab
+      value: 
+      objectReference: {fileID: 7762861765185893670, guid: f625ee9a4f98b7a45a705c7b86aaca0d, type: 3}
     - target: {fileID: 9054547910013916819, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0

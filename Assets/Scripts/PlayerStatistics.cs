@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class PlayerStatistics : EntityStatistics
 {
     //private bool _bombUnlocked;
-    [HideInInspector]
-    public UnityEvent<int> HealthChanged;
-    [HideInInspector]
-    public UnityEvent<int> MaxHealthChanged;
+    [HideInInspector] public UnityEvent<int> HealthChanged;
+    [HideInInspector] public UnityEvent<int> MaxHealthChanged;
 
     public override void addHeart()
     {
