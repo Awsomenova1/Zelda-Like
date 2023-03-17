@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 995244356}
-  smoothing: 0.1
+  smoothing: 1
 --- !u!4 &995244356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1604024548595032745, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}

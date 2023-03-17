@@ -20,15 +20,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
-    private bool _inAnimation = false;
-
     private IEnumerator _swordCoroutine;
-    private float _swordTimeSeconds = 0.5f;
+    private float _swordTimeSeconds = .25f;
 
     // Update is called once per frame
     void Update()
     {
+        if(!_stats.getInAnimation()){
         playerRB.velocity = new Vector2(_horizontalDirection * _horizontalSpeed, _verticalDirection * _verticalSpeed);
+        }
+        else{
+            playerRB.velocity = Vector2.zero;
+        }
+        
 
         //_stats.setDirection((int)EntityStatistics.Directions.left);
         //rotate();
@@ -37,10 +41,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Move(InputAction.CallbackContext context){
-        _horizontalDirection = context.ReadValue<Vector2>().x;
-        _verticalDirection = context.ReadValue<Vector2>().y;
-        _stats.decideDirection(_horizontalDirection, _verticalDirection);
-        WalkAnimation();
+        //if(!_stats.getInAnimation()){
+            _horizontalDirection = context.ReadValue<Vector2>().x;
+            _verticalDirection = context.ReadValue<Vector2>().y;
+            _stats.decideDirection(_horizontalDirection, _verticalDirection);
+            WalkAnimation();
+        //}
+        /*else{
+            _horizontalDirection = 0;
+            _verticalDirection = 0;
+        }*/
     }
 
     private void WalkAnimation(){
@@ -52,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
         //TODO possibly replace this when proper animations are implememnted, tie this functionality to unity animator
         if(!_stats.getInAnimation()){
             _stats.setInAnimation(true);
-            swordHitbox.SetActive(true);
-
+            //swordHitbox.SetActive(true);
+            _animator.SetBool("Attacking", true);
             StartCoroutine(WaitForSword(_swordTimeSeconds));
         }
     }
@@ -62,7 +72,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         _stats.setInAnimation(false);
-        swordHitbox.SetActive(false);
+        //swordHitbox.SetActive(false);
+        _animator.SetBool("Attacking", false);
     }
 
     /*public void Flip(){

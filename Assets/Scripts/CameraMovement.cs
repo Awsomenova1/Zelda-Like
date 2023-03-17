@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        target = gameObject.transform.Find("/Player");
     }
 
     // LateUpdate is called once per frame
