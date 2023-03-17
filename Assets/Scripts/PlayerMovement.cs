@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
             _stats.setInAnimation(true);
             swordHitboxes[_stats.getDirection()].SetActive(true);
             _animator.SetBool("Attacking", true);
+
             StartCoroutine(WaitForSword(_swordTimeSeconds));
         }
     }
