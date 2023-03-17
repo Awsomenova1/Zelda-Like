@@ -60,10 +60,10 @@ public class EntityStatistics: MonoBehaviour
     }
     public void decideDirection(float horizontalSpeed, float verticalSpeed){
         if(Mathf.Abs(verticalSpeed) >= Mathf.Abs(horizontalSpeed)){
-            if(verticalSpeed <= 0){
+            if(verticalSpeed < 0){
                 _facingDirection = (int) Directions.down;
             }
-            else{
+            else if(verticalSpeed > 0){
                 _facingDirection = (int) Directions.up;
             }
         }

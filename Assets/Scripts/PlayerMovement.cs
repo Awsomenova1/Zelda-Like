@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D playerRB;
     
-    public GameObject swordHitbox;
+    public GameObject[] swordHitboxes;
 
     private float _horizontalDirection;
     private float _verticalDirection;
@@ -21,48 +21,40 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
 
     private IEnumerator _swordCoroutine;
-    private float _swordTimeSeconds = .25f;
+    private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation, I think
 
     // Update is called once per frame
     void Update()
     {
         if(!_stats.getInAnimation()){
-        playerRB.velocity = new Vector2(_horizontalDirection * _horizontalSpeed, _verticalDirection * _verticalSpeed);
+            playerRB.velocity = new Vector2(_horizontalDirection * _horizontalSpeed, _verticalDirection * _verticalSpeed);
+            WalkAnimation();
         }
         else{
             playerRB.velocity = Vector2.zero;
         }
-        
 
-        //_stats.setDirection((int)EntityStatistics.Directions.left);
-        //rotate();
-        //TODO change flip code to change used sprites
-        //TODO create placeholder sprites for character
     }
 
-    public void Move(InputAction.CallbackContext context){
-        //if(!_stats.getInAnimation()){
-            _horizontalDirection = context.ReadValue<Vector2>().x;
-            _verticalDirection = context.ReadValue<Vector2>().y;
-            _stats.decideDirection(_horizontalDirection, _verticalDirection);
-            WalkAnimation();
-        //}
-        /*else{
-            _horizontalDirection = 0;
-            _verticalDirection = 0;
-        }*/
+    //determines what direction the player is trying to move the character in
+    public void Move(InputAction.CallbackContext context){    
+        _horizontalDirection = context.ReadValue<Vector2>().x;
+        _verticalDirection = context.ReadValue<Vector2>().y;
     }
 
+    //determines what direction the character is walking
     private void WalkAnimation(){
+        _stats.decideDirection(_horizontalDirection, _verticalDirection);
         int direction = _stats.getDirection();
         _animator.SetFloat("Direction", direction);
     }
 
+    //determines when the player character can attack, and in what direction
     public void Attack(InputAction.CallbackContext context){
         //TODO possibly replace this when proper animations are implememnted, tie this functionality to unity animator
         if(!_stats.getInAnimation()){
             _stats.setInAnimation(true);
-            //swordHitbox.SetActive(true);
+            swordHitboxes[_stats.getDirection()].SetActive(true);
             _animator.SetBool("Attacking", true);
             StartCoroutine(WaitForSword(_swordTimeSeconds));
         }
@@ -72,48 +64,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         _stats.setInAnimation(false);
-        //swordHitbox.SetActive(false);
+        swordHitboxes[_stats.getDirection()].SetActive(false);
         _animator.SetBool("Attacking", false);
     }
-
-    /*public void Flip(){
-        //if(_verticalDirection > 0){}
-        _isFacingRight = !_isFacingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
-    }
-
-    public void FlipVertical(){
-        _isFacingDown = !_isFacingDown;
-        Vector3 localScale = transform.localScale;
-        localScale.y *= -1f;
-        transform.localScale = localScale;
-    }
-
-    public void rotate(){
-        Vector3 TargetDirection = 
-
-        if(_horizontalDirection > 0f){
-            transform.RotateTowards();
-        }
-        else if(_horizontalDirection < 0f){
-            transform.Rotate(faceLeft);
-        }
-        Vector2 moveDirection = playerRB.velocity;
-        if (moveDirection != Vector2.zero) {//add conditions later to make only face cardinal directions
-            float angle = Mathf.Atan2(-(moveDirection.y), -(moveDirection.x)) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-    }
-
-    public void Jump(InputAction.CallbackContext context){
-        if(context.performed && IsGrounded()){
-            playerRB.velocity = new Vector2(playerRB.velocity.x, jumpingPower);
-        }
-
-        //second part
-    }*/
 
 }
 
