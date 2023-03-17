@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//allows the player to move as well as take a number of other actions like attacking
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D playerRB;
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
 
     private IEnumerator _swordCoroutine;
-    private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation, I think
+    private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
 
     // Update is called once per frame
     void Update()
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity = new Vector2(_horizontalDirection * _horizontalSpeed, _verticalDirection * _verticalSpeed);
             WalkAnimation();
         }
+        //if the player enters an animation, halt their movement but maintain same movement direction until after animation
         else{
             playerRB.velocity = Vector2.zero;
         }
@@ -51,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     //determines when the player character can attack, and in what direction
     public void Attack(InputAction.CallbackContext context){
-        //TODO possibly replace this when proper animations are implememnted, tie this functionality to unity animator
+        //this can only activate if the player is not taking an action, like anothe sword swing
         if(!_stats.getInAnimation()){
             _stats.setInAnimation(true);
             swordHitboxes[_stats.getDirection()].SetActive(true);
@@ -61,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //ends the sword attack animation
+    //another action cannot be engaged until this function finishes running
     private IEnumerator WaitForSword(float waitTime){
         yield return new WaitForSeconds(waitTime);
 
