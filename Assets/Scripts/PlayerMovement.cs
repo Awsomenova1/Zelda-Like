@@ -49,6 +49,13 @@ public class PlayerMovement : MonoBehaviour
         _stats.decideDirection(_horizontalDirection, _verticalDirection);
         int direction = _stats.getDirection();
         _animator.SetFloat("Direction", direction);
+
+        if(Mathf.Abs(_horizontalDirection) > 0 || Mathf.Abs(_verticalDirection) > 0){
+            _animator.SetBool("Walking", true);
+        }
+        else{
+            _animator.SetBool("Walking", false);
+        }
     }
 
     //determines when the player character can attack, and in what direction
