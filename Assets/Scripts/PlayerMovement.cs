@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     //determines when the player character can attack, and in what direction
     public void Attack(InputAction.CallbackContext context){
         //this can only activate if the player is not taking an action, like anothe sword swing
-        if(!_stats.getInAnimation()){
+        if(!_stats.getInAnimation() && context.started){
             _stats.setInAnimation(true);
             swordHitboxes[_stats.getDirection()].SetActive(true);
             _animator.SetBool("Attacking", true);
