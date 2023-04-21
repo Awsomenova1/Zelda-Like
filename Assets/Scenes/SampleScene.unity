@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcDialogue: {fileID: 210317065}
-  _npcText: It's dangerous to go alone! Take this!
+  _npcText: It's dangerous to go alone! Take this! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
 --- !u!1 &1271511370
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +755,22 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 9054547908951164267, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547909595233245, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547909595233245, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547909595233245, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: m_overflowMode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547909595233245, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9054547910013916818, guid: b497a40f233e77a42a72c99e182128b5, type: 3}

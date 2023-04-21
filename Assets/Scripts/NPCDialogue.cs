@@ -6,18 +6,31 @@ public class NPCDialogue : MonoBehaviour
 {
     [SerializeField] private TMP_Text dialogueText;
     private bool _npcNearby;
+    private int _currPage;
+    private int _maxPages;
     private bool _isShowingDialogue;
 
     public void Interact(InputAction.CallbackContext context)
     {
+        // Only run when the key is pressed (not released)
+        if (!context.started) return;
+        
         if (_npcNearby && (!_isShowingDialogue)) 
         {
             DisplayDialogue();
         }
-        else
+        // If there's no more pages of dialogue 
+        else if (_currPage == _maxPages)
         {
+            dialogueText.pageToDisplay = 1;
             _isShowingDialogue = false;
             gameObject.SetActive(false);
+        }
+        // Display the next page of dialogue
+        else
+        {
+            _currPage++;
+            dialogueText.pageToDisplay = _currPage;
         }
     }
     
@@ -34,7 +47,12 @@ public class NPCDialogue : MonoBehaviour
 
     private void DisplayDialogue()
     {
-        _isShowingDialogue = true;
+        // show the dialogue GUI
         gameObject.SetActive(true); 
+        // textInfo is only regenerated when the mesh updates 
+        dialogueText.ForceMeshUpdate();
+        _maxPages = dialogueText.textInfo.pageCount;
+        _currPage = 1;
+        _isShowingDialogue = true;
     }
 }
