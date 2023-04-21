@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    [SerializeField] private NPCDialogue _npcDialogue;
-    [SerializeField] private string _npcText;
+    [SerializeField] private NPCDialogue npcDialogue;
+    [SerializeField] private string npcText;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _npcDialogue.SetDialogueText(_npcText);
+            npcDialogue.SetDialogueText(npcText);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-       _npcDialogue.RemoveDialogue(); 
+       npcDialogue.RemoveDialogue(); 
     }
 }
