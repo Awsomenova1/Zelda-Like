@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
+
+    // void Start()
+    // {
+    //     var dialogue = GameObject.Find("Canvas");
+    //     _npcDialogue = dialogue.transform.GetChild(1).GetComponent<NPCDialogue>();
+    // }
 
     // Update is called once per frame
     void Update()

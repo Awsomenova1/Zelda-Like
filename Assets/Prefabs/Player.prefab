@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 8459815373539703570}
   - component: {fileID: 1604024548595032746}
   - component: {fileID: 5007879348686291166}
+  - component: {fileID: 1554195809805487120}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -351,7 +352,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/Interact[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1554195809805487120}
         m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 0
@@ -390,6 +391,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1554195809805487120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604024548595032791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f510c7451412472c9e226b64559ec302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 8549126759778765750, guid: 0f51bacd3c8e7e840b52261a57ddf872, type: 3}
+  dialogueText: {fileID: 0}
 --- !u!1 &1978723618131032445
 GameObject:
   m_ObjectHideFlags: 0

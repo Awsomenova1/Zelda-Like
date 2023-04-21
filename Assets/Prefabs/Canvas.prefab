@@ -119,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9054547908951164266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 9054547909595233242}
   - component: {fileID: 9054547909595233244}
   - component: {fileID: 9054547909595233245}
+  - component: {fileID: 8889908036217734046}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -273,9 +274,9 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 72
-  m_fontSizeBase: 36
+  m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -290,7 +291,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 5
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -314,6 +315,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8889908036217734046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054547909595233243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6366ee97f6b541449155028b9487355a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9054547910013916816
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,9 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d3256134dcbe0478471929fcb0578d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
-  fullHeartPrefab: {fileID: 3226156061800984853, guid: 3c5c35b03fc3fa84fa7073978a8a3502, type: 3}
-  halfHeartPrefab: {fileID: 395298013805959718, guid: 7df5a337b5a1f7d47bbc8734c289018b, type: 3}
-  emptyHeartPrefab: {fileID: 7762861765185893670, guid: f625ee9a4f98b7a45a705c7b86aaca0d, type: 3}
-  _maxHearts: 10
-  _health: 3
+  _stats: {fileID: 8459815373539703570, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+  _fullHeartPrefab: {fileID: 3226156061800984853, guid: 3c5c35b03fc3fa84fa7073978a8a3502, type: 3}
+  _halfHeartPrefab: {fileID: 395298013805959718, guid: 7df5a337b5a1f7d47bbc8734c289018b, type: 3}
+  _emptyHeartPrefab: {fileID: 7762861765185893670, guid: f625ee9a4f98b7a45a705c7b86aaca0d, type: 3}
