@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3123962340181118509}
   - component: {fileID: 3402637751808873369}
   - component: {fileID: 2313390386778501764}
+  - component: {fileID: 7882410658290222830}
   m_Layer: 0
   m_Name: Left Sword Hitbox
   m_TagString: Untagged
@@ -111,6 +112,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7882410658290222830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898809783407247758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17991f6249ef1d541aae71c49af22d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 4
 --- !u!1 &1604024548595032791
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +208,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -653105123, guid: b6434f60eb092764798cc47020e551ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -416,6 +430,7 @@ GameObject:
   - component: {fileID: 1089931332397945229}
   - component: {fileID: 1209387683961709767}
   - component: {fileID: 455472408526041544}
+  - component: {fileID: 7808810059688105881}
   m_Layer: 0
   m_Name: Right Sword Hitbox
   m_TagString: Untagged
@@ -516,6 +531,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7808810059688105881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978723618131032445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17991f6249ef1d541aae71c49af22d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 4
 --- !u!1 &6537798384148778076
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +555,7 @@ GameObject:
   - component: {fileID: 5433990070236714110}
   - component: {fileID: 2640614239465114893}
   - component: {fileID: 290531258882825791}
+  - component: {fileID: 5086661731977566396}
   m_Layer: 0
   m_Name: Down Sword Hitbox
   m_TagString: Untagged
@@ -627,6 +656,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5086661731977566396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537798384148778076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17991f6249ef1d541aae71c49af22d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 4
 --- !u!1 &8507149876391393307
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +680,7 @@ GameObject:
   - component: {fileID: 9106277305986144344}
   - component: {fileID: 8988757464384476454}
   - component: {fileID: 1544436732157896811}
+  - component: {fileID: 4588334571715277750}
   m_Layer: 0
   m_Name: Up Sword Hitbox
   m_TagString: Untagged
@@ -738,3 +781,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4588334571715277750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507149876391393307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17991f6249ef1d541aae71c49af22d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 4
