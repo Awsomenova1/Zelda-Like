@@ -141,5 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1dac6a4992f48c5a1950b5ccf4c9ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcDialogue: {fileID: 1554195809805487120, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+  _npcDialogue: {fileID: 0}
   npcText: It's dangerous to go alone! Take this!
