@@ -21,7 +21,7 @@ public class EntityStatistics: MonoBehaviour
     public EntityStatistics(){
         _maxHealth = 10;
         _currHealth = 10;
-        _facingDirection = (int) Directions.left;
+        _facingDirection = (int) Directions.down;
         _inAnimation = false;
     }
 
