@@ -134,6 +134,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3a5d8c6ad126b4e96dd85f896e3c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &210317061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9054547908951164267, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+  m_PrefabInstance: {fileID: 9054547908796731921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &210317065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210317061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f510c7451412472c9e226b64559ec302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: {fileID: 1550947971}
 --- !u!1 &250753080
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,9 +335,11 @@ GameObject:
   - component: {fileID: 1051187063}
   - component: {fileID: 1051187062}
   - component: {fileID: 1051187064}
+  - component: {fileID: 1051187065}
+  - component: {fileID: 1051187066}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,8 +407,7 @@ Transform:
   m_LocalPosition: {x: -0.1777212, y: 4.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1795754273}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -418,6 +437,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!58 &1051187065
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051187061}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &1051187066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051187061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1dac6a4992f48c5a1950b5ccf4c9ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcDialogue: {fileID: 210317065}
+  _npcText: It's dangerous to go alone! Take this!
 --- !u!1 &1271511370
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,67 +578,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1795754272
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1795754273}
-  - component: {fileID: 1795754275}
-  - component: {fileID: 1795754274}
-  m_Layer: 0
-  m_Name: Trigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1795754273
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795754272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1051187063}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1795754274
+--- !u!114 &1550947971 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 9054547909595233245, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+  m_PrefabInstance: {fileID: 9054547908796731921}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795754272}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f917f7f22f1a7c44976dec0b7f5e70f, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &1795754275
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795754272}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1001 &1604024549930069352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -645,29 +644,13 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 1604024548595032749, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
-      propertyPath: _stats
+    - target: {fileID: 1604024548595032746, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 196630418}
+      objectReference: {fileID: 210317065}
     - target: {fileID: 1604024548595032791, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1604024548595032791, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1604024548595032791, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8459815373539703570, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
-      propertyPath: _maxHealth
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8459815373539703570, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
-      propertyPath: _currHealth
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
@@ -770,6 +753,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 9054547908951164267, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9054547910013916818, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
       propertyPath: stats
       value: 
