@@ -20,8 +20,11 @@ public class PlayerHitBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Enemy")){
-            other.GetComponent<Breakable>().takeDamage(_damage);
+            other.GetComponent<GenericEnemy>().takeDamage(_damage);
             //TODO add proper enemy scripts and change case to reflect breakable objects being seperate
+        }
+        else if(other.CompareTag("Breakable")){
+            other.GetComponent<Breakable>().takeDamage(_damage);
         }
     }
     

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6870312962263206440}
   - component: {fileID: 6870312962263206441}
   - component: {fileID: 6870312962263206442}
+  - component: {fileID: 5816830909434578450}
   m_Layer: 0
   m_Name: genericEnemy
   m_TagString: Untagged
@@ -140,3 +141,18 @@ MonoBehaviour:
   PlayerMovement: {fileID: 0}
   _enemyStartPos: {x: 0, y: 0, z: 0}
   _enemyEndPos: {x: -5, y: 5, z: 0}
+  _stats: {fileID: 5816830909434578450}
+--- !u!114 &5816830909434578450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6870312962263206437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155b55a6463f15f4196ba844207ef990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 10
+  _currHealth: 10

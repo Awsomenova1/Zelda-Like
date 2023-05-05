@@ -21,8 +21,8 @@ public class GenericEnemy : MonoBehaviour
 
     private float _horizontalDirection;
     private float _verticalDirection;
-    private float _horizontalSpeed = 8f;
-    private float _verticalSpeed = 4f;
+    private float _horizontalSpeed = 2f;
+    //private float _verticalSpeed = 4f;
     private float viewDistance = 10f;
     private float viewAngle = 90f;
 
@@ -33,6 +33,9 @@ public class GenericEnemy : MonoBehaviour
     private bool _startToEnd;       // startToEnd: bool flag that determines if enemy if moving from start to end point. If false, enemy is moving from end to start
     public Vector3 _enemyStartPos;  // enemyStartPos: When in patrol mode, enemy will start at this positions
     public Vector3 _enemyEndPos;    // enemyEndPos: When in patrol mode, enemy will end at this position, then go back to start pos
+
+    [SerializeField]
+    private EntityStatistics _stats;
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +126,12 @@ public class GenericEnemy : MonoBehaviour
         return false;
     }
 
+    public void takeDamage(int damage){
+        _stats.takeDamage(damage);
+        if(_stats.getCurrentHealth() == 0){
+            gameObject.SetActive(false);
+        }
+    }
 
     //void FixedUpdate()
     //{
