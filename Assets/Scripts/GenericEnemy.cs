@@ -18,13 +18,15 @@ public class GenericEnemy : MonoBehaviour
 
     [SerializeField]
     private PlayerMovement PlayerMovement;
+    private Vector2 _PlayerLocation;
+    public Transform PlayerTransform;
 
     private float _horizontalDirection;
     private float _verticalDirection;
     private float _horizontalSpeed = 2f;
     //private float _verticalSpeed = 4f;
-    private float viewDistance = 10f;
-    private float viewAngle = 90f;
+    //private float viewDistance = 10f;
+    //private float viewAngle = 90f;
 
     private bool _isFacingRight;
     private bool _isFacingDown;
@@ -33,6 +35,8 @@ public class GenericEnemy : MonoBehaviour
     private bool _startToEnd;       // startToEnd: bool flag that determines if enemy if moving from start to end point. If false, enemy is moving from end to start
     public Vector3 _enemyStartPos;  // enemyStartPos: When in patrol mode, enemy will start at this positions
     public Vector3 _enemyEndPos;    // enemyEndPos: When in patrol mode, enemy will end at this position, then go back to start pos
+
+    //public BoxCollider2D sightBox;
 
     [SerializeField]
     private EntityStatistics _stats;
@@ -52,10 +56,15 @@ public class GenericEnemy : MonoBehaviour
     void Update()
     {
         // If player is not spotted, pace back and forth between defined place on scene
-        var step = _horizontalSpeed * Time.deltaTime; // calculate distance to move
+        float step = _horizontalSpeed * Time.deltaTime; // calculate distance to move
 
-        if (!_playerSpotted)
+        if (_playerSpotted){
+            MoveToPlayer(step);
+        }
+        else{
             patrol(step);
+        }
+
             // Functionality to check to see player:
             //Debug.Log(findThePlayer(PlayerMovement.GetTransform()));
 
@@ -78,10 +87,30 @@ public class GenericEnemy : MonoBehaviour
         //}
 
 
-        if (_playerSpotted)
-        {
+        //if (_playerSpotted)
+        //{
             // Move towards player and attack
+            
+        //}
+    }
+
+    //determines if player has been spotted
+    //if player has been spotted, the patrol script will stop. If the player moves out of range, resume patrol
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("Player")){
+            _playerSpotted = true;
+            //_PlayerLocation = other.gameObject.transform.position;
+            PlayerTransform = other.gameObject.transform;
         }
+    }
+    private void OnTriggerExit2D(Collider2D other){
+        if (other.gameObject.CompareTag("Player")){
+            _playerSpotted = false;
+        }
+    }
+
+    private void MoveToPlayer(float step){
+        transform.position = Vector3.MoveTowards(transform.position, PlayerTransform.position, step);
     }
 
     // Patrol: Enemy continuously moves between two different points while enemy is patrolling
@@ -108,7 +137,7 @@ public class GenericEnemy : MonoBehaviour
 
     // findThePlayer: Given player's position, calculates dist. and visibility of player from enemy's pov
     // Here you have to pass the players position by the players transform
-    bool findThePlayer(Transform playerPos)
+   /* bool findThePlayer(Transform playerPos)
     {
         if (Vector3.Distance(transform.position, playerPos.position) < viewDistance)
         {
@@ -124,7 +153,7 @@ public class GenericEnemy : MonoBehaviour
             }
         }
         return false;
-    }
+    }*/
 
     public void takeDamage(int damage){
         _stats.takeDamage(damage);
