@@ -17,25 +17,27 @@ public class Pushable : MonoBehaviour
     {
         _startPosition = transform.position;
         _isMoving = false;
+        // Cache object to improve performance
         _slideDelay = new WaitForSeconds(stepDelay);
-
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         // Only the player can push the block
-        if (!other.gameObject.CompareTag("Player")) return;
-        if (pushesLeft <= 0) return;
+        if (!other.gameObject.CompareTag("Player")) return; if (pushesLeft <= 0) return;
 
+        // Get the contact vector of the player 
         var contacts = new ContactPoint2D[1];
         pushCollider.GetContacts(contacts);
-
+        
+        // Get a normalized vector representing the direction the player
+        // is in relative to the block
         var playerDirection = contacts[0].normal;
 
         var offset = playerDirection * 1f; 
 
-        Debug.Log($"Offset: {offset}");
-
+        // The block can only be pushed when
+        // it's not moving
         if (_isMoving == false)
         {
             _isMoving = true;
@@ -45,6 +47,7 @@ public class Pushable : MonoBehaviour
     }
 
     // Slowly move the slide the block towards the goal in the correct direction
+    // Play with lerpStep and stepDelay to tune the animation 
     private IEnumerator Slide(Vector2 offset)
     {
         var alpha = 0f; 
