@@ -33,7 +33,7 @@ public class EntityStatistics: MonoBehaviour
     }
     public virtual void healDamage(int heal){
         _currHealth += heal;
-        if(_currHealth <= _maxHealth){
+        if(_currHealth >= _maxHealth){
             _currHealth = _maxHealth;
         }
     }

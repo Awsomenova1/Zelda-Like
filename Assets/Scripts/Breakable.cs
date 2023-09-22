@@ -12,6 +12,10 @@ public class Breakable : MonoBehaviour
     private Animator _animator;
     [SerializeField]
     private Collider2D collider;
+    [SerializeField]
+    private GameObject heartPickupPrefab;
+
+    private const float _dropChance = 0.2f;
 
     private bool broken;
     // Start is called before the first frame update
@@ -29,9 +33,18 @@ public class Breakable : MonoBehaviour
     public void takeDamage(int damage){
         //_stats.takeDamage(damage);
         //if(_stats.getCurrentHealth() == 0){
+        //
+            // If the roll is lucky, the pot will drop a heart 
+            var roll = Random.Range(0f, 1f);
+            if ((roll <= _dropChance) && (broken == false))
+            {
+                Instantiate(heartPickupPrefab, transform.position, Quaternion.identity);
+            }
+
             broken = true;
             _animator.SetBool("Broken", broken);
             collider.isTrigger = broken;
+           
         //}
     }
 }
