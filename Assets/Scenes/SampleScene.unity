@@ -883,6 +883,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1248434628808303002, guid: 4b2dc011e1bc84f9cb2e6fe2a5651cc9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6870312962263206437, guid: 4b2dc011e1bc84f9cb2e6fe2a5651cc9, type: 3}
       propertyPath: m_Name
       value: genericEnemy

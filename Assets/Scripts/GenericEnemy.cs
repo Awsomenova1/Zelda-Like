@@ -99,7 +99,6 @@ public class GenericEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Player")){
             _playerSpotted = true;
-            //_PlayerLocation = other.gameObject.transform.position;
             PlayerTransform = other.gameObject.transform;
         }
     }
@@ -111,6 +110,10 @@ public class GenericEnemy : MonoBehaviour
 
     private void MoveToPlayer(float step){
         transform.position = Vector3.MoveTowards(transform.position, PlayerTransform.position, step);
+        //TODO perhaps use this as a method to deal contact damage to player
+        if (Vector2.Distance(transform.position, PlayerTransform.position) <= 2){//TODO probably change 2 to a variable
+            //Debug.Log(Vector2.Distance(transform.position, PlayerTransform.position));
+        }
     }
 
     // Patrol: Enemy continuously moves between two different points while enemy is patrolling
