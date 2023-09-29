@@ -35,7 +35,7 @@ public class GenericEnemy : MonoBehaviour
     private bool _startToEnd;       // startToEnd: bool flag that determines if enemy if moving from start to end point. If false, enemy is moving from end to start
     public Vector3 _enemyStartPos;  // enemyStartPos: When in patrol mode, enemy will start at this positions
     public Vector3 _enemyEndPos;    // enemyEndPos: When in patrol mode, enemy will end at this position, then go back to start pos
-
+    public float ChaseRadius = 4f; // radius from which enemy will chase the player
     //public BoxCollider2D sightBox;
 
     [SerializeField]
@@ -50,6 +50,7 @@ public class GenericEnemy : MonoBehaviour
         _enemyStartPos = transform.position; // Enemy position in scripting is set to enemyStartPos
         Debug.Log("Enemy start pos.x: " + _enemyStartPos.x);
 
+        PlayerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -57,6 +58,8 @@ public class GenericEnemy : MonoBehaviour
     {
         // If player is not spotted, pace back and forth between defined place on scene
         float step = _horizontalSpeed * Time.deltaTime; // calculate distance to move
+
+        CheckDistance();
 
         if (_playerSpotted){
             MoveToPlayer(step);
@@ -96,7 +99,16 @@ public class GenericEnemy : MonoBehaviour
 
     //determines if player has been spotted
     //if player has been spotted, the patrol script will stop. If the player moves out of range, resume patrol
-    private void OnTriggerEnter2D(Collider2D other){
+    private void CheckDistance(){
+        if(Vector3.Distance(PlayerTransform.position, transform.position) <= ChaseRadius){
+            _playerSpotted = true;
+        }
+        else{
+            _playerSpotted = false;
+        }
+    }
+    
+    /*private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Player")){
             _playerSpotted = true;
             PlayerTransform = other.gameObject.transform;
@@ -106,7 +118,7 @@ public class GenericEnemy : MonoBehaviour
         if (other.gameObject.CompareTag("Player")){
             _playerSpotted = false;
         }
-    }
+    }*/
 
     private void MoveToPlayer(float step){
         transform.position = Vector3.MoveTowards(transform.position, PlayerTransform.position, step);
