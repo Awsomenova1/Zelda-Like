@@ -59,6 +59,8 @@ public class Pushable : MonoBehaviour
             yield return _slideDelay;
         }
 
+        // the block has been pushed to a new position, so reset the start position
+        _startPosition = transform.position;
         _isMoving = false;
     }
 }

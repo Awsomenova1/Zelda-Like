@@ -2003,6 +2003,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 909775476953415842, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: pushesLeft
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4641250581908254624, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
       propertyPath: m_RootOrder
       value: 31
