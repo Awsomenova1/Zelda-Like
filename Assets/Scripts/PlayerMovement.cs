@@ -15,12 +15,15 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalDirection;
     private float _horizontalSpeed = 8f;
     private float _verticalSpeed = 4f;
+    private bool _freezeInput = false;
     //private bool _isFacingRight;
     //private bool _isFacingDown;
     [SerializeField]
     private PlayerStatistics _stats;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private BoxCollider2D _collider;
 
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
@@ -47,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     //determines what direction the player is trying to move the character in
     public void Move(InputAction.CallbackContext context){    
+        if (_freezeInput) return;
+
         _horizontalDirection = context.ReadValue<Vector2>().x;
         _verticalDirection = context.ReadValue<Vector2>().y;
     }
@@ -86,6 +91,37 @@ public class PlayerMovement : MonoBehaviour
         swordHitboxes[_stats.getDirection()].SetActive(false);
         _animator.SetBool("Attacking", false);
     }
+    
+    // this coroutine makes sure that the player is
+    // still touching a block before continuing
+    private IEnumerator WaitToStartPushing(Collision2D other) {
+        // yield return new WaitForSeconds(0.5f);
+        if (_collider.IsTouching(other.collider)) {
+            _animator.SetBool("Pushing", true);
+            _freezeInput = true;
+            var alpha = 0f; 
+            Vector2 startPosition = transform.position;
+            while (alpha < 1f) 
+            {
+                alpha += 0.05f;
+                transform.position = Vector2.Lerp(startPosition, startPosition + new Vector2(_horizontalDirection, _verticalDirection), alpha);
+                yield return new WaitForSeconds(0.05f);
+            }
+            _freezeInput = false;
+            _animator.SetBool("Pushing", false);
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Pushable") && (_animator.GetBool("Pushing") == false)) {
+            StartCoroutine(nameof(WaitToStartPushing), other);
+        }
+    }
+
+    // private void OnCollisionExit2D(Collision2D other) {
+    //     if (_animator.GetBool("Pushing")) {
+    //         _animator.SetBool("Pushing", false);
+    //     }
+    // }
 }
 
