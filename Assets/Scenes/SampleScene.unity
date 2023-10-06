@@ -1813,6 +1813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5945034b6b88e324980ac8f850eb873b, type: 3}
+--- !u!61 &2010009684 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1604024548595032747, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+  m_PrefabInstance: {fileID: 1604024549930069352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2131327057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1891,11 +1896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1604024548595032745, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.17772117
+      value: -6.07
       objectReference: {fileID: 0}
     - target: {fileID: 1604024548595032745, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06030646
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 1604024548595032745, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1929,13 +1934,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1604024548595032747, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7599
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604024548595032747, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604024548595032749, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 2010009684}
     - target: {fileID: 1604024548595032791, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8459815373539703570, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
-      propertyPath: _currHealth
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
@@ -2005,7 +2018,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 909775476953415842, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
       propertyPath: pushesLeft
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4641250581908254624, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
       propertyPath: m_RootOrder
