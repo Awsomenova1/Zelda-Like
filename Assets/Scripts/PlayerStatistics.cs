@@ -7,6 +7,11 @@ using UnityEngine.Serialization;
 public class PlayerStatistics : EntityStatistics
 {
     //private bool _bombUnlocked;
+
+    //determines if player is invincible
+    //set temporarily after getting hit by enemy so that player can't take too much damage at once
+    private bool _invulnerable = false;
+    private float _invulTimeSeconds = 1.5f;
     [HideInInspector] public UnityEvent<int> HealthChanged;
     [HideInInspector] public UnityEvent<int> MaxHealthChanged;
 
@@ -30,7 +35,16 @@ public class PlayerStatistics : EntityStatistics
 
     public override void takeDamage(int damage)
     {
-        base.takeDamage(damage);
-        HealthChanged?.Invoke(_currHealth);
+        if(!_invulnerable){
+            base.takeDamage(damage);
+            HealthChanged?.Invoke(_currHealth);
+            StartCoroutine(WaitForInvulnerable(_invulTimeSeconds));
+        }
+    }
+
+    private IEnumerator WaitForInvulnerable(float waitTime){
+        _invulnerable = true;
+        yield return new WaitForSeconds(waitTime);
+        _invulnerable = false;
     }
 }
