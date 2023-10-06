@@ -44,6 +44,7 @@ public class PlayerStatistics : EntityStatistics
 
     private IEnumerator WaitForInvulnerable(float waitTime){
         _invulnerable = true;
+        //TODO also possibly add "flashing" animation to indicate damage taken
         yield return new WaitForSeconds(waitTime);
         _invulnerable = false;
     }
