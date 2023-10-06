@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
+    private WaitForSeconds _blockPushDelay = new WaitForSeconds(0.5f);
 
     // void Start()
     // {
@@ -50,10 +51,13 @@ public class PlayerMovement : MonoBehaviour
 
     //determines what direction the player is trying to move the character in
     public void Move(InputAction.CallbackContext context){    
-        if (_freezeInput) return;
-
-        _horizontalDirection = context.ReadValue<Vector2>().x;
-        _verticalDirection = context.ReadValue<Vector2>().y;
+        if (_freezeInput) {
+            _horizontalDirection = 0; 
+            _verticalDirection = 0; 
+        } else {
+            _horizontalDirection = context.ReadValue<Vector2>().x;
+            _verticalDirection = context.ReadValue<Vector2>().y;
+        }
     }
 
     //determines what direction the character is walking
@@ -95,20 +99,16 @@ public class PlayerMovement : MonoBehaviour
     // this coroutine makes sure that the player is
     // still touching a block before continuing
     private IEnumerator WaitToStartPushing(Collision2D other) {
-        // yield return new WaitForSeconds(0.5f);
         if (_collider.IsTouching(other.collider)) {
+            _stats.setInAnimation(true);
             _animator.SetBool("Pushing", true);
             _freezeInput = true;
-            var alpha = 0f; 
-            Vector2 startPosition = transform.position;
-            while (alpha < 1f) 
-            {
-                alpha += 0.05f;
-                transform.position = Vector2.Lerp(startPosition, startPosition + new Vector2(_horizontalDirection, _verticalDirection), alpha);
-                yield return new WaitForSeconds(0.05f);
-            }
+
+            yield return _blockPushDelay; 
+
             _freezeInput = false;
             _animator.SetBool("Pushing", false);
+            _stats.setInAnimation(false);
         }
     }
 

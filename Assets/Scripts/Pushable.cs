@@ -24,7 +24,8 @@ public class Pushable : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         // Only the player can push the block
-        if (!other.gameObject.CompareTag("Player")) return; if (pushesLeft <= 0) return;
+        if (!other.gameObject.CompareTag("Player")) return; 
+        if (pushesLeft <= 0) return;
 
         // Get the contact vector of the player 
         var contacts = new ContactPoint2D[1];
@@ -42,25 +43,34 @@ public class Pushable : MonoBehaviour
         {
             _isMoving = true;
             pushesLeft--;
-            StartCoroutine(nameof(Slide), offset);
+            StartCoroutine(Slide(other, offset));
         }
     }
 
     // Slowly move the slide the block towards the goal in the correct direction
     // Play with lerpStep and stepDelay to tune the animation 
-    private IEnumerator Slide(Vector2 offset)
+    private IEnumerator Slide(Collision2D other, Vector2 offset)
     {
-        var alpha = 0f; 
+        Debug.Log("waiting...");
+        yield return new WaitForSeconds(1f);
 
-        while (alpha < 1f) 
-        {
-            alpha += lerpStep;
-            transform.position = Vector2.Lerp(_startPosition, _startPosition + offset, alpha);
-            yield return _slideDelay;
+        if (pushCollider.IsTouching(other.collider)) {
+            Debug.Log("yes");
+            var alpha = 0f; 
+
+            while (alpha < 1f) 
+            {
+                alpha += lerpStep;
+                transform.position = Vector2.Lerp(_startPosition, _startPosition + offset, alpha);
+                yield return _slideDelay;
+            }
+
+            // the block has been pushed to a new position, so reset the start position
+            _startPosition = transform.position;
+            _isMoving = false;
+        } else {
+            Debug.Log("no");
+            _isMoving = false;
         }
-
-        // the block has been pushed to a new position, so reset the start position
-        _startPosition = transform.position;
-        _isMoving = false;
     }
 }

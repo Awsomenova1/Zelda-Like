@@ -2017,6 +2017,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 909775476953415842, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: lerpStep
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 909775476953415842, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: stepDelay
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 909775476953415842, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
       propertyPath: pushesLeft
       value: 50
       objectReference: {fileID: 0}
