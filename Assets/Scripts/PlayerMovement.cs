@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
+    
+    [SerializeField]
+    private GameObject _bombPrefab;
+    public bool bombUnlocked = true;
 
     // void Start()
     // {
@@ -85,6 +89,14 @@ public class PlayerMovement : MonoBehaviour
         _stats.setInAnimation(false);
         swordHitboxes[_stats.getDirection()].SetActive(false);
         _animator.SetBool("Attacking", false);
+    }
+
+    public void Bomb(InputAction.CallbackContext context){
+        if(!_stats.getInAnimation() && context.started && bombUnlocked){
+            GameObject bomb;
+            bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
+            bomb.gameObject.SetActive(true);
+        }
     }
 
 }

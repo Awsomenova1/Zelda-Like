@@ -44,7 +44,7 @@ public class Breakable : MonoBehaviour
             broken = true;
             _animator.SetBool("Broken", broken);
             collider.isTrigger = broken;
-           
+
         //}
     }
 }
