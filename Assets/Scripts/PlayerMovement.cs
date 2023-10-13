@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 //allows the player to move as well as take a number of other actions like attacking
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
     private WaitForSeconds _blockPushDelay = new WaitForSeconds(0.5f);
+    private int _pushDirection; 
 
     // void Start()
     // {
@@ -72,6 +72,10 @@ public class PlayerMovement : MonoBehaviour
         else{
             _animator.SetBool("Walking", false);
         }
+
+        if (_animator.GetBool("Pushing") && (!IsMoving() || direction != _pushDirection)) {
+            _animator.SetBool("Pushing", false);
+        }
     }
 
     //determines when the player character can attack, and in what direction
@@ -96,32 +100,22 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("Attacking", false);
     }
     
-    // this coroutine makes sure that the player is
-    // still touching a block before continuing
-    private IEnumerator WaitToStartPushing(Collision2D other) {
-        if (_collider.IsTouching(other.collider)) {
-            _stats.setInAnimation(true);
+    private IEnumerator WaitToStartPushing(Collider2D other) {
+        yield return new WaitForSeconds(0.2f);
+        if (_collider.IsTouching(other)) {
+            _pushDirection = _stats.getDirection();
             _animator.SetBool("Pushing", true);
-            _freezeInput = true;
-
-            yield return _blockPushDelay; 
-
-            _freezeInput = false;
-            _animator.SetBool("Pushing", false);
-            _stats.setInAnimation(false);
         }
     }
+
+    // True if the player is moving in a direction
+    private bool IsMoving() => _horizontalDirection != 0 || _verticalDirection != 0;
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Pushable") && (_animator.GetBool("Pushing") == false)) {
-            StartCoroutine(nameof(WaitToStartPushing), other);
+        Debug.Log($"Enter: {other.collider.gameObject.name}");
+        if (IsMoving() && _animator.GetBool("Pushing") == false) {
+            StartCoroutine(nameof(WaitToStartPushing), other.collider);
         }
     }
 
-    // private void OnCollisionExit2D(Collision2D other) {
-    //     if (_animator.GetBool("Pushing")) {
-    //         _animator.SetBool("Pushing", false);
-    //     }
-    // }
 }
-

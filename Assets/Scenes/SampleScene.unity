@@ -2028,6 +2028,10 @@ PrefabInstance:
       propertyPath: pushesLeft
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2634881161770722689, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4641250581908254624, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
       propertyPath: m_RootOrder
       value: 31
@@ -2070,6 +2074,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4641250581908254624, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641250581908254625, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8888889
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641250581908254625, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8888889
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641250581908254625, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641250581908254625, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641250581908254625, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4641250581908254630, guid: 5ace0b1019e703409853ea7f59fde569, type: 3}
