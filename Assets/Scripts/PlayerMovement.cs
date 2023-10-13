@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
     private WaitForSeconds _blockPushDelay = new WaitForSeconds(0.5f);
     private int _pushDirection; 
+    
+    [SerializeField]
+    private GameObject _bombPrefab;
+    public bool bombUnlocked = true;
 
     // void Start()
     // {
@@ -112,9 +116,16 @@ public class PlayerMovement : MonoBehaviour
     private bool IsMoving() => _horizontalDirection != 0 || _verticalDirection != 0;
 
     private void OnCollisionEnter2D(Collision2D other) {
-        Debug.Log($"Enter: {other.collider.gameObject.name}");
         if (IsMoving() && _animator.GetBool("Pushing") == false) {
             StartCoroutine(nameof(WaitToStartPushing), other.collider);
+        }
+    }
+
+    public void Bomb(InputAction.CallbackContext context){
+        if(!_stats.getInAnimation() && context.started && bombUnlocked){
+            GameObject bomb;
+            bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
+            bomb.gameObject.SetActive(true);
         }
     }
 
