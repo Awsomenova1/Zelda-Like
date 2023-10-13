@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4641250581908254631}
   - component: {fileID: 4641250581908254625}
   - component: {fileID: 909775476953415842}
+  - component: {fileID: 2634881161770722689}
   m_Layer: 0
   m_Name: Block
   m_TagString: Pushable
@@ -125,6 +126,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushCollider: {fileID: 4641250581908254625}
+  rb: {fileID: 2634881161770722689}
   pushesLeft: 1
-  lerpStep: 0.05
-  stepDelay: 0.05
+  pushTime: 0.35
+--- !u!50 &2634881161770722689
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641250581908254630}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
