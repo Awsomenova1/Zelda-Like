@@ -17,7 +17,7 @@ public class BombHitBox : MonoBehaviour
     /// </summary>
     void Start()
     {
-        StartCoroutine(WaitToDestroy(_waitTimeSeconds));
+        //StartCoroutine(WaitToDestroy(_waitTimeSeconds));
     }
 
     private IEnumerator WaitToDestroy(float waitTime){
