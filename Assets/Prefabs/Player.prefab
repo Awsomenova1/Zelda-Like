@@ -209,8 +209,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: -653105123, guid: b6434f60eb092764798cc47020e551ef, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 1527507978, guid: b6434f60eb092764798cc47020e551ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -314,7 +314,9 @@ MonoBehaviour:
   - {fileID: 1978723618131032445}
   _stats: {fileID: 8459815373539703570}
   _animator: {fileID: 5007879348686291166}
-  _bombPrefab: {fileID: 5393786911701218508, guid: fac0ace0e03d4e64db03b340b3a2c20d, type: 3}
+  _collider: {fileID: 0}
+  _bombPrefab: {fileID: 3067739343039582482, guid: 9452993b8e58d274ca541f749c2e6184, type: 3}
+  bombUnlocked: 1
 --- !u!114 &8459815373539703570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 6
-  _currHealth: 6
+  _currHealth: 4
   HealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -461,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f510c7451412472c9e226b64559ec302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 8549126759778765750, guid: 0f51bacd3c8e7e840b52261a57ddf872, type: 3}
+  dialogue: {fileID: 0}
   dialogueText: {fileID: 0}
 --- !u!1 &1978723618131032445
 GameObject:

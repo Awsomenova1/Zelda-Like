@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 //allows the player to move as well as take a number of other actions like attacking
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,9 +20,13 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStatistics _stats;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private BoxCollider2D _collider;
 
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
+    private WaitForSeconds _blockPushDelay = new WaitForSeconds(0.5f);
+    private int _pushDirection = -1; 
     
     [SerializeField]
     private GameObject _bombPrefab;
@@ -67,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
         else{
             _animator.SetBool("Walking", false);
         }
+
+        if (_animator.GetBool("Pushing") && (!IsMoving() || (direction != _pushDirection))) {
+            _animator.SetBool("Pushing", false);
+            _pushDirection = -1;
+        }
     }
 
     //determines when the player character can attack, and in what direction
@@ -90,14 +98,69 @@ public class PlayerMovement : MonoBehaviour
         swordHitboxes[_stats.getDirection()].SetActive(false);
         _animator.SetBool("Attacking", false);
     }
+    
+    private IEnumerator WaitToStartPushing(Collider2D other) {
+        yield return new WaitForSeconds(0.2f);
+        if (_collider.IsTouching(other) && IsMoving()) {
+            _pushDirection = _stats.getDirection();
+            _animator.SetBool("Pushing", true);
+        }
+    }
+
+    // True if the player is moving in a direction
+    private bool IsMoving() => _horizontalDirection != 0 || _verticalDirection != 0;
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (IsMoving() && _animator.GetBool("Pushing") == false) {
+            // Get a contact point
+            var contacts = new ContactPoint2D[1];
+            _collider.GetContacts(contacts);
+            
+            // Find the normalized direction vector of the object relative to the player
+            Vector2Int otherObjectDir = Vector2Int.RoundToInt(contacts[0].normal);
+
+            // Only do the push animation if the player is facing the object touched
+            if (((otherObjectDir.x + _horizontalDirection) == 0) || ((otherObjectDir.y + _verticalDirection) == 0))
+            {
+                StartCoroutine(nameof(WaitToStartPushing), other.collider);
+            }         
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        if (_animator.GetBool("Pushing") == true) {
+            _animator.SetBool("Pushing", false);
+            _pushDirection = -1;
+        }
+    }
 
     public void Bomb(InputAction.CallbackContext context){
         if(!_stats.getInAnimation() && context.started && bombUnlocked){
             GameObject bomb;
-            bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
+            Vector3 location;
+
+            //place the bomb in front of the player, different spot depending on direction the player is facing
+            int faceDir = _stats.getDirection();
+            //facing down
+            if(faceDir == 0){
+                location = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+            }
+            //facing up
+            else if(faceDir == 1){
+                location = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            }
+            //facing left
+            else if(faceDir == 2){
+                location = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+            }
+            //facing right
+            else{
+                location = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+            }
+
+            bomb = Instantiate(_bombPrefab, location, Quaternion.identity);
             bomb.gameObject.SetActive(true);
         }
     }
 
 }
-
