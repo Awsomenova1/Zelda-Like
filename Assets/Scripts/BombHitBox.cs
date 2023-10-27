@@ -9,7 +9,7 @@ public class BombHitBox : MonoBehaviour
     [SerializeField]
     int _damageToPlayer = 1;
 
-    private float _waitTimeSeconds = .25f;//time until explosion disapears (how long hitbox lingers)
+    //private float _waitTimeSeconds = .25f;//time until explosion disapears (how long hitbox lingers)
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before

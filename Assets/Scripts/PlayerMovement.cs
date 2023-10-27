@@ -124,7 +124,28 @@ public class PlayerMovement : MonoBehaviour
     public void Bomb(InputAction.CallbackContext context){
         if(!_stats.getInAnimation() && context.started && bombUnlocked){
             GameObject bomb;
-            bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
+            Vector3 location;
+
+            //place the bomb in front of the player, different spot depending on direction the player is facing
+            int faceDir = _stats.getDirection();
+            //facing down
+            if(faceDir == 0){
+                location = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+            }
+            //facing up
+            else if(faceDir == 1){
+                location = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            }
+            //facing left
+            else if(faceDir == 2){
+                location = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+            }
+            //facing right
+            else{
+                location = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+            }
+
+            bomb = Instantiate(_bombPrefab, location, Quaternion.identity);
             bomb.gameObject.SetActive(true);
         }
     }
