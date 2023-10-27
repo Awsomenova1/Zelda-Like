@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalDirection;
     private float _horizontalSpeed = 8f;
     private float _verticalSpeed = 4f;
-    private bool _freezeInput = false;
     //private bool _isFacingRight;
     //private bool _isFacingDown;
     [SerializeField]
@@ -27,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator _swordCoroutine;
     private float _swordTimeSeconds = .25f;//set to the length of the sword swing animation
     private WaitForSeconds _blockPushDelay = new WaitForSeconds(0.5f);
-    private int _pushDirection; 
+    private int _pushDirection = -1; 
     
     [SerializeField]
     private GameObject _bombPrefab;
@@ -55,13 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
     //determines what direction the player is trying to move the character in
     public void Move(InputAction.CallbackContext context){    
-        if (_freezeInput) {
-            _horizontalDirection = 0; 
-            _verticalDirection = 0; 
-        } else {
-            _horizontalDirection = context.ReadValue<Vector2>().x;
-            _verticalDirection = context.ReadValue<Vector2>().y;
-        }
+        _horizontalDirection = context.ReadValue<Vector2>().x;
+        _verticalDirection = context.ReadValue<Vector2>().y;
     }
 
     //determines what direction the character is walking
@@ -77,8 +71,9 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("Walking", false);
         }
 
-        if (_animator.GetBool("Pushing") && (!IsMoving() || direction != _pushDirection)) {
+        if (_animator.GetBool("Pushing") && (!IsMoving() || (direction != _pushDirection))) {
             _animator.SetBool("Pushing", false);
+            _pushDirection = -1;
         }
     }
 
@@ -106,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     
     private IEnumerator WaitToStartPushing(Collider2D other) {
         yield return new WaitForSeconds(0.2f);
-        if (_collider.IsTouching(other)) {
+        if (_collider.IsTouching(other) && IsMoving()) {
             _pushDirection = _stats.getDirection();
             _animator.SetBool("Pushing", true);
         }
@@ -117,7 +112,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (IsMoving() && _animator.GetBool("Pushing") == false) {
-            StartCoroutine(nameof(WaitToStartPushing), other.collider);
+            // Get a contact point
+            var contacts = new ContactPoint2D[1];
+            _collider.GetContacts(contacts);
+            
+            // Find the normalized direction vector of the object relative to the player
+            Vector2Int otherObjectDir = Vector2Int.RoundToInt(contacts[0].normal);
+
+            // Only do the push animation if the player is facing the object touched
+            if (((otherObjectDir.x + _horizontalDirection) == 0) || ((otherObjectDir.y + _verticalDirection) == 0))
+            {
+                StartCoroutine(nameof(WaitToStartPushing), other.collider);
+            }         
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        if (_animator.GetBool("Pushing") == true) {
+            _animator.SetBool("Pushing", false);
+            _pushDirection = -1;
         }
     }
 
