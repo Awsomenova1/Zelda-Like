@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bomb : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Bomb : MonoBehaviour
     private float _explodeTimeSeconds = .25f;//how long the explosion exists for 
 
     public GameObject explosionBox;
+
+    public SpriteRenderer bombSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +23,7 @@ public class Bomb : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         explosionBox.SetActive(true);
+        bombSprite.enabled = false;
 
         StartCoroutine(WaitToDestroy(_explodeTimeSeconds));
     }
