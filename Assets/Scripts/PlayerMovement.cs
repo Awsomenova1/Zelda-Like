@@ -37,6 +37,13 @@ public class PlayerMovement : MonoBehaviour
     //     var dialogue = GameObject.Find("Canvas");
     //     _npcDialogue = dialogue.transform.GetChild(1).GetComponent<NPCDialogue>();
     // }
+    void OnEnable() {
+        _stats.PlayerDied.AddListener(OnPlayerDied);
+    }
+
+    void OnDisable() {
+        _stats.PlayerDied.RemoveAllListeners();
+    }
 
     // Update is called once per frame
     void Update()
@@ -56,6 +63,17 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context){    
         _horizontalDirection = context.ReadValue<Vector2>().x;
         _verticalDirection = context.ReadValue<Vector2>().y;
+    }
+
+    private void OnPlayerDied() {
+        _animator.SetTrigger("Dead");        
+        StartCoroutine(nameof(StopGame));
+    }
+
+    private IEnumerator StopGame() {
+        yield return new WaitForSeconds(1f);
+        _animator.ResetTrigger("Dead");
+        Time.timeScale = 0f;
     }
 
     //determines what direction the character is walking
