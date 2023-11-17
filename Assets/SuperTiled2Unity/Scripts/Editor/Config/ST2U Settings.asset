@@ -17,7 +17,7 @@ MonoBehaviour:
   m_AnimationFramerate: 20
   m_DefaultMaterial: {fileID: 0}
   m_MaterialMatchings: []
-  m_ObjectTypesXml: {fileID: 0}
+  m_ObjectTypesXml: {fileID: 4900000, guid: e31a3148ef6f16648826b9e9df345fb8, type: 3}
   m_ParseXmlError: 
   m_CollisionGeometryType: 1
   m_LayerColors:
@@ -53,5 +53,10 @@ MonoBehaviour:
   - {r: 1, g: 0.64705884, b: 0, a: 1}
   - {r: 0, g: 1, b: 1, a: 1}
   - {r: 0.7372549, g: 0.56078434, b: 0.56078434, a: 1}
-  m_CustomObjectTypes: []
-  m_PrefabReplacements: []
+  m_CustomObjectTypes:
+  - m_Name: Pot
+    m_Color: {r: 0.627451, g: 0.627451, b: 0.6431373, a: 1}
+    m_CustomProperties: []
+  m_PrefabReplacements:
+  - m_TypeName: Pot
+    m_Prefab: {fileID: 4032463148451426633, guid: 5945034b6b88e324980ac8f850eb873b, type: 3}
