@@ -11,5 +11,10 @@ public class EnemyHitBox : MonoBehaviour
             other.GetComponent<PlayerStatistics>().takeDamage(_damage);
             Debug.Log("Dealt 1 damage");
         }
+
+        if(this.CompareTag("Projectile")){//Checks if item using script is a Projectile
+            Destroy(gameObject);//Destroy on contact
+        }
+
     }
 }

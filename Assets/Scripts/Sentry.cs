@@ -23,11 +23,11 @@ public class Sentry : MonoBehaviour// Sentry Class
     void Update()
     {
         //Use this to update the Launcher's position depending on rotation
-        launcherX = transform.position.x * Mathf.Sin(transform.rotation.z);//Causes sentry to fly off
+        launcherX = transform.position.x * Mathf.Sin(transform.rotation.z);
         launcherY = transform.position.y * Mathf.Sin(transform.rotation.z);//Causes Sentry to fly off
-        //launcherPos = new Vector3(launcherX, launcherY, transform.position.x);
+        launcherPos = new Vector3(launcherX, launcherY, transform.position.x);
 
-        //Launcher.transform.position = launcherPos;
+        Launcher.transform.position = launcherPos;
 
         TimeBetween += Time.deltaTime;
         if (TimeBetween >= fireRate)//Time delay between fires
@@ -38,6 +38,7 @@ public class Sentry : MonoBehaviour// Sentry Class
     }
     void FireProj(){    
         Instantiate(ProjectPrefab, Launcher.position, transform.rotation);//Create a new projectile prefab
+        
     }
 
 }
