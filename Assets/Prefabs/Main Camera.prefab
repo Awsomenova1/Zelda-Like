@@ -98,6 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  smoothing: 0.1
+  smoothing: 0.05
   maxPosition: {x: 5, y: 5}
   minPosition: {x: -5, y: -5}

@@ -1720,6 +1720,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2269064020493402539, guid: c5051fc9b1d7f3240ad0dd0ed9ebc3ef, type: 3}
+      propertyPath: smoothing
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269064020493402539, guid: c5051fc9b1d7f3240ad0dd0ed9ebc3ef, type: 3}
       propertyPath: maxPosition.x
       value: 0
       objectReference: {fileID: 0}
