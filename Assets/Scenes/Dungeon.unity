@@ -521,6 +521,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3673110556184377203, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 1100195029}
+    - target: {fileID: 3673110556184377203, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1811976022}
     - target: {fileID: 9054547908474486164, guid: b497a40f233e77a42a72c99e182128b5, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1840,7 +1848,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8459815373539703570, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
   m_PrefabInstance: {fileID: 1811976021}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1811976022}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a3a5d8c6ad126b4e96dd85f896e3c2e, type: 3}
@@ -3106,6 +3114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+--- !u!1 &1811976022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1604024548595032791, guid: 8ce3f999121254c43ab53f9cde04f67f, type: 3}
+  m_PrefabInstance: {fileID: 1811976021}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1885861558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 844576946525507596, guid: 8369ae1ee1bb3a54f950339e3e620353, type: 3}
