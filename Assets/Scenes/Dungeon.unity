@@ -3685,7 +3685,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2182680186325534143, guid: ceb0d78dba9d38c4e8d8d2dbe872e62a, type: 3}
       propertyPath: npcText
-      value: Your reward is to the right. Was it worth it?
+      value: Your reward is to the right but the real treasure was the friends we
+        made along the way.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceb0d78dba9d38c4e8d8d2dbe872e62a, type: 3}
