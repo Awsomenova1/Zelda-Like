@@ -14,6 +14,7 @@ public class PlayerStatistics : EntityStatistics
     private float _invulTimeSeconds = 1.5f;
     [HideInInspector] public UnityEvent<int> HealthChanged;
     [HideInInspector] public UnityEvent<int> MaxHealthChanged;
+    [HideInInspector] public UnityEvent PlayerDied;
 
     public override void addHeart()
     {
@@ -38,6 +39,11 @@ public class PlayerStatistics : EntityStatistics
         if(!_invulnerable){
             base.takeDamage(damage);
             HealthChanged?.Invoke(_currHealth);
+
+            if (base._currHealth <= 0) {
+                PlayerDied?.Invoke();
+            }
+ 
             StartCoroutine(WaitForInvulnerable(_invulTimeSeconds));
         }
     }
