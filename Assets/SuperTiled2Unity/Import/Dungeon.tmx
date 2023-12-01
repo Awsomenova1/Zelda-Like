@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="36" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="30">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="36" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="43">
  <tileset firstgid="1" source="tmw_desert_spacing.tsx"/>
  <layer id="1" name="Tile Layer 1" width="36" height="15">
   <data encoding="csv">
@@ -30,5 +30,15 @@
   <object id="28" template="Pot.tx" class="Pot" x="376" y="408"/>
   <object id="26" template="Pot.tx" class="Pot" x="472" y="408"/>
   <object id="29" x="399.333" y="468" width="66" height="8"/>
+  <object id="31" template="Pot.tx" class="Pot" x="1016" y="280"/>
+  <object id="41" template="Pot.tx" class="Pot" x="1032" y="232"/>
+  <object id="42" template="Pot.tx" class="Pot" x="984" y="232"/>
+  <object id="37" template="Pot.tx" class="Pot" x="1032" y="280"/>
+  <object id="38" template="Pot.tx" class="Pot" x="1048" y="264"/>
+  <object id="32" template="Pot.tx" class="Pot" x="1000" y="280"/>
+  <object id="33" template="Pot.tx" class="Pot" x="984" y="280"/>
+  <object id="34" template="Pot.tx" class="Pot" x="984" y="216"/>
+  <object id="39" template="Pot.tx" class="Pot" x="968" y="264"/>
+  <object id="40" template="Pot.tx" class="Pot" x="1032" y="216"/>
  </objectgroup>
 </map>
